@@ -1,4 +1,4 @@
-function getComputerChoice () {
+function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
     let handPosition
     switch (randomNumber) {
@@ -15,15 +15,24 @@ function getComputerChoice () {
     return handPosition;
 }
 
-function getUserChoice (){
+function getUserChoice() {
     let userPrompt = prompt("Rock, Paper or Scissors?")
     let userChoice = userPrompt.toLowerCase();
-    return userChoice;
+    if (userChoice === "rock" || userChoice === "paper" || userChoice === "scissors") {
+        return userChoice;
+    }else {
+        alert("respuesta incorrecta")
+        retry();
+    }
+    
 }
 
-getUserChoice();
-getComputerChoice();
+function retry() {
+    getUserChoice()
+}
+
+
+
 let userHand = getUserChoice();
 let computerHand = getComputerChoice();
 console.log(`computer hand is ${computerHand} and user hand is ${userHand}`);
-
