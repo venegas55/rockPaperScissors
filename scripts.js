@@ -16,22 +16,15 @@ function getComputerChoice() {
 }
 
 function getUserChoice() {
-    let userPrompt = prompt("Rock, Paper or Scissors?")
-    let userChoice = userPrompt.toLowerCase();
-    if (userChoice === "rock" || userChoice === "paper" || userChoice === "scissors") {
-        return userChoice;
-    }else {
-        alert("respuesta incorrecta")
-        retry();
+    let userPrompt = prompt("Rock, Paper or Scissors?").toLowerCase();
+    if (userPrompt === "rock" || userPrompt === "paper" || userPrompt === "scissors") {
+        return userPrompt;
     }
-    
+    alert('wrong answer, try again!')
+    // as suggested by @Decim, adding return to the "recursion" solved the problem... might need to study why that happens
+    return getUserChoice();
+    //also saved an image from @B96 which has the same code but his works... might learn something from it (image is saved on a folder called "help")
 }
-
-function retry() {
-    getUserChoice()
-}
-
-
 
 let userHand = getUserChoice();
 let computerHand = getComputerChoice();
