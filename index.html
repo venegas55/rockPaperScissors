@@ -1,13 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
-</head>
-<body style="background-color: black;">
-    
-</body>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Welcome to Rock paper Scissors</h1>
+      <p>by @venegas55</p>
+    </div>
+    <div class="gamingZone">
+      <h1>Choose your weapon</h1>
+      <ul>
+        <li class="button">
+          <img
+            src="./assets/rock.png"
+            alt="hand in fist"
+            class="choiceImage"
+            id="rock"
+          />Rock
+        </li>
+        <li class="button">
+          <img
+            src="./assets/paper.png"
+            alt="extended hand"
+            class="choiceImage"
+            id="paper"
+          />Paper
+        </li>
+        <li class="button">
+          <img
+            src="./assets/scissors.png"
+            alt="hand like scissors"
+            class="choiceImage"
+            id="scissors"
+          />Scissors
+        </li>
+      </ul>
+    </div>
+    <div class="results">
+      <h2>Results</h2>
+      <p class="message" id="message"></p>
+      <div class="totalGames">
+        <p>Total Games</p>
+        <p class="labelGames"></p>
+      </div>
+      <div class="wonGames">
+        <p>Won</p>
+        <p id="labelWon"></p>
+      </div>
+      <div class="lostGames">
+        <p>Lost</p>
+        <p id="labelLost"></p>
+      </div>
+      <button id="reset">Reset</button>
+    </div>
+  </body>
 </html>
-<script src="scripts.js"></script>
+<script src="./app.js"></script>

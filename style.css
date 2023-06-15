@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Yuji+Boku&display=swap");
+
+* {
+  color: white;
+  background-color: black;
+  border: 2px solid red;
+  font-family: "Yuji Boku", serif;
+}
+
+/* Top container (header) -------------------------------------------*/
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header > * {
+  margin: 0;
+  text-align: center;
+}
+
+/* Choice container (gamingZone) ----------------------------------*/
+
+.gamingZone > * {
+  margin: 0;
+  text-align: center;
+}
+
+.choiceImage {
+  width: 30%;
+  background-color: brown;
+  border-radius: 50%;
+}
+
+/* Just to make images same size */
+#paper {
+  width: 35.8%;
+}
+
+.gamingZone > ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.gamingZone > ul > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* results container (results) ---------------------------------------*/
+
+.results {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.results > *,
+.results > * > * {
+  margin: 0;
+  padding: 0;
+  min-height: 1.5em;
+}
+
+.results > div {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 25vw;
+  padding-right: 25vw;
+}
+
+#reset {
+  font-size: 32px;
+  border: 3px solid red;
+  align-self: center;
+  padding: 10px;
+  border-radius: 10px;
+}
