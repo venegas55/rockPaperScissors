@@ -3,7 +3,7 @@
 * {
   color: white;
   background-color: black;
-  /*border: 2px solid red;*/
+  border: 2px solid red;
   font-family: "Yuji Boku", serif;
 }
 
@@ -71,6 +71,12 @@
   justify-content: space-between;
   padding-left: 25vw;
   padding-right: 25vw;
+}
+
+#result {
+  font-size: 32px;
+  font-weight: bold;
+  align-self: center;
 }
 
 #reset {

@@ -7,11 +7,10 @@ let gameCounter = 0;
 
 let buttons = document.querySelectorAll(".button");
 const resetButton = document.querySelector("#reset");
-
-//click listener, for some reason it stops and also waits only for the click on images... THAT'S GOOD but i need to understand why...
+let resultDisplay = document.querySelector("#result");
 
 buttons.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", function func() {
     const img = button.querySelector("img");
     playerSelection = img.id.toLowerCase();
     playRound(playerSelection, computerSelection);
@@ -28,23 +27,23 @@ function roundWinner(userHand, computerHand) {
   let whoWin;
   switch (true) {
     case userHand === "rock" && computerHand === "paper":
-      alert("you lose");
+      //alert("you lose");
       whoWin = "you lose";
       break;
     case userHand === "paper" && computerHand === "scissors":
-      alert("you lose");
+      //alert("you lose");
       whoWin = "you lose";
       break;
     case userHand === "scissors" && computerHand === "rock":
-      alert("you lose");
+      //alert("you lose");
       whoWin = "you lose";
       break;
     case userHand === computerHand:
-      alert("it's a tie");
+      //alert("it's a tie");
       whoWin = "it's a tie";
       break;
     default:
-      alert("you win");
+      //alert("you win");
       whoWin = "you win";
   }
   return whoWin;
@@ -72,6 +71,22 @@ function playRound(playerSelection, computerSelection) {
   }
   ++gameCounter;
   gamesDisplay.textContent = gameCounter;
+
+  if (gameCounter < 5) {
+    resultDisplay.textContent = `Computer got ${computerSelection} and you chose ${playerSelection}, So ${whoWin}. That's ${gameCounter}/5 games`;
+  } else {
+    gameOver(playerScore, computerScore);
+  }
+}
+
+function gameOver(playerScore, computerScore) {
+  if (playerScore > computerScore) {
+    resultDisplay.textContent = "CONGRATULATIONS! YOU WIN!!";
+  } else if (computerScore > playerScore) {
+    resultDisplay.textContent = "LOOSER!!! 💩";
+  } else if (computerScore === playerScore) {
+    resultDisplay.textContent = "TIE!!! try again?";
+  }
 }
 
 resetButton.addEventListener("click", () => {
@@ -81,4 +96,5 @@ resetButton.addEventListener("click", () => {
   wonDisplay.textContent = playerScore;
   lostDisplay.textContent = computerScore;
   gamesDisplay.textContent = gameCounter;
+  resultDisplay.textContent = "";
 });
