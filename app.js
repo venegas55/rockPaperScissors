@@ -3,15 +3,17 @@ let computerSelection;
 let playerSelection;
 let computerScore = 0;
 let playerScore = 0;
+let gameCounter = 0;
 
 let buttons = document.querySelectorAll(".button");
+const resetButton = document.querySelector("#reset");
+
+//click listener, for some reason it stops and also waits only for the click on images... THAT'S GOOD but i need to understand why...
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const img = button.querySelector("img");
     playerSelection = img.id.toLowerCase();
-    console.log(`when click` + playerSelection);
-
     playRound(playerSelection, computerSelection);
   });
 });
@@ -22,7 +24,7 @@ function getComputerSelection() {
   return weaponArray[~~(Math.random() * weaponArray.length)];
 }
 
-function checkWinner(userHand, computerHand) {
+function roundWinner(userHand, computerHand) {
   let whoWin;
   switch (true) {
     case userHand === "rock" && computerHand === "paper":
@@ -47,15 +49,36 @@ function checkWinner(userHand, computerHand) {
   }
   return whoWin;
 }
+let gamesDisplay = document.querySelector("#labelGames");
+let wonDisplay = document.querySelector("#labelWon");
+let lostDisplay = document.querySelector("#labelLost");
 
 function playRound(playerSelection, computerSelection) {
   computerSelection = getComputerSelection().toLowerCase();
   playerSelection = playerSelection.toLowerCase();
-  let whoWin = checkWinner(playerSelection, computerSelection);
+  let whoWin = roundWinner(playerSelection, computerSelection);
   console.log(`evaluated PC` + computerSelection);
   console.log(`evaluated Human` + playerSelection);
 
-  alert(
-    `computer got ${computerSelection} and you chose ${playerSelection}. so ${whoWin}. thats /5 games`
-  );
+  switch (true) {
+    case whoWin === "you win":
+      playerScore = ++playerScore;
+      wonDisplay.textContent = playerScore;
+      break;
+    case whoWin === "you lose":
+      computerScore = ++computerScore;
+      lostDisplay.textContent = computerScore;
+      break;
+  }
+  ++gameCounter;
+  gamesDisplay.textContent = gameCounter;
 }
+
+resetButton.addEventListener("click", () => {
+  playerScore = 0;
+  computerScore = 0;
+  gameCounter = 0;
+  wonDisplay.textContent = playerScore;
+  lostDisplay.textContent = computerScore;
+  gamesDisplay.textContent = gameCounter;
+});
