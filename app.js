@@ -5,32 +5,23 @@ let computerScore = 0;
 let playerScore = 0;
 let gameCounter = 0;
 const weaponArray = ["Rock", "Paper", "Scissors"];
-let clickHandler;
 
-let buttons = document.querySelectorAll(".choiceImage"); //modified
+let buttons = document.querySelectorAll(".choiceImage");
 const resetButton = document.querySelector("#reset");
 let resultDisplay = document.querySelector("#result");
 
 //TODO i need to fix this...
-buttons.forEach((button) => {
-  clickHandler = () => {
-    myFunction(button);
-  };
-  button.addEventListener("click", clickHandler);
-});
-
+//<WRONG>
 function myFunction(button) {
   playerSelection = button.id;
   playRound(playerSelection, computerSelection);
 }
+const clickHandler = myFunction();
 
-// buttons.forEach((button) => {
-//   button.addEventListener("click", () => {
-//     const img = button.querySelector("img");
-//     playerSelection = img.id.toLowerCase();
-//     playRound(playerSelection, computerSelection);
-//   });
-// });
+buttons.forEach((button) => {
+  button.addEventListener("click", clickHandler);
+});
+//<WRONG>
 
 function getComputerSelection() {
   return weaponArray[~~(Math.random() * weaponArray.length)];
@@ -40,23 +31,18 @@ function roundWinner(userHand, computerHand) {
   let whoWin;
   switch (true) {
     case userHand === "rock" && computerHand === "paper":
-      //alert("you lose");
       whoWin = "you lose";
       break;
     case userHand === "paper" && computerHand === "scissors":
-      //alert("you lose");
       whoWin = "you lose";
       break;
     case userHand === "scissors" && computerHand === "rock":
-      //alert("you lose");
       whoWin = "you lose";
       break;
     case userHand === computerHand:
-      //alert("it's a tie");
       whoWin = "it's a tie";
       break;
     default:
-      //alert("you win");
       whoWin = "you win";
   }
   return whoWin;
@@ -98,6 +84,7 @@ function gameOver(playerScore, computerScore) {
   } else if (computerScore === playerScore) {
     resultDisplay.textContent = "TIE!!! try again?";
   }
+
   buttons.forEach((button) => {
     button.removeEventListener("click", clickHandler);
   });
