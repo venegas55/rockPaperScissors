@@ -4,20 +4,33 @@ let playerSelection;
 let computerScore = 0;
 let playerScore = 0;
 let gameCounter = 0;
+const weaponArray = ["Rock", "Paper", "Scissors"];
+let clickHandler;
 
-let buttons = document.querySelectorAll(".button");
+let buttons = document.querySelectorAll(".choiceImage"); //modified
 const resetButton = document.querySelector("#reset");
 let resultDisplay = document.querySelector("#result");
 
+//TODO i need to fix this...
 buttons.forEach((button) => {
-  button.addEventListener("click", function func() {
-    const img = button.querySelector("img");
-    playerSelection = img.id.toLowerCase();
-    playRound(playerSelection, computerSelection);
-  });
+  clickHandler = () => {
+    myFunction(button);
+  };
+  button.addEventListener("click", clickHandler);
 });
 
-const weaponArray = ["Rock", "Paper", "Scissors"];
+function myFunction(button) {
+  playerSelection = button.id;
+  playRound(playerSelection, computerSelection);
+}
+
+// buttons.forEach((button) => {
+//   button.addEventListener("click", () => {
+//     const img = button.querySelector("img");
+//     playerSelection = img.id.toLowerCase();
+//     playRound(playerSelection, computerSelection);
+//   });
+// });
 
 function getComputerSelection() {
   return weaponArray[~~(Math.random() * weaponArray.length)];
@@ -56,8 +69,6 @@ function playRound(playerSelection, computerSelection) {
   computerSelection = getComputerSelection().toLowerCase();
   playerSelection = playerSelection.toLowerCase();
   let whoWin = roundWinner(playerSelection, computerSelection);
-  console.log(`evaluated PC` + computerSelection);
-  console.log(`evaluated Human` + playerSelection);
 
   switch (true) {
     case whoWin === "you win":
@@ -87,6 +98,9 @@ function gameOver(playerScore, computerScore) {
   } else if (computerScore === playerScore) {
     resultDisplay.textContent = "TIE!!! try again?";
   }
+  buttons.forEach((button) => {
+    button.removeEventListener("click", clickHandler);
+  });
 }
 
 resetButton.addEventListener("click", () => {
