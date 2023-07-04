@@ -23,12 +23,6 @@ function myFunction(button) {
   playerSelection = button.id;
   playRound(playerSelection, computerSelection);
 }
-const clickHandler = myFunction();
-
-buttons.forEach((button) => {
-  button.addEventListener("click", clickHandler);
-});
-//<WRONG>
 
 function getComputerSelection() {
   return weaponArray[~~(Math.random() * weaponArray.length)];
