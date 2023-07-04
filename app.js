@@ -11,7 +11,14 @@ const resetButton = document.querySelector("#reset");
 let resultDisplay = document.querySelector("#result");
 
 //TODO i need to fix this...
-//<WRONG>
+
+buttons.forEach((button) => {
+  clickHandler = () => {
+    myFunction(button);
+  };
+  button.addEventListener("click", clickHandler);
+});
+
 function myFunction(button) {
   playerSelection = button.id;
   playRound(playerSelection, computerSelection);
@@ -86,6 +93,9 @@ function gameOver(playerScore, computerScore) {
   }
 
   buttons.forEach((button) => {
+    clickHandler = () => {
+      myFunction(button);
+    };
     button.removeEventListener("click", clickHandler);
   });
 }
