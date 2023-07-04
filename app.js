@@ -5,13 +5,13 @@ let computerScore = 0;
 let playerScore = 0;
 let gameCounter = 0;
 const weaponArray = ["Rock", "Paper", "Scissors"];
-let clickHandler;
 
 let buttons = document.querySelectorAll(".choiceImage"); //modified
 const resetButton = document.querySelector("#reset");
 let resultDisplay = document.querySelector("#result");
 
 //TODO i need to fix this...
+
 buttons.forEach((button) => {
   clickHandler = () => {
     myFunction(button);
@@ -99,6 +99,9 @@ function gameOver(playerScore, computerScore) {
     resultDisplay.textContent = "TIE!!! try again?";
   }
   buttons.forEach((button) => {
+    clickHandler = () => {
+      myFunction(button);
+    };
     button.removeEventListener("click", clickHandler);
   });
 }
